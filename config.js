@@ -1,0 +1,22 @@
+const dotenv = require("dotenv")
+dotenv.config()
+
+const {
+  DATABASE_USER,
+  DATABASE_PASSWORD,
+  DATABASE_HOST,
+  DATABASE_NAME,
+  DATABASE_DIALECT,
+  PORT,
+  TOKEN_SECRET
+} = process.env
+
+module.exports = {
+  DATABASE_USER,
+  DATABASE_PASSWORD,
+  DATABASE_HOST,
+  DATABASE_NAME,
+  PORT,
+  DATABASE_DIALECT,
+  TOKEN_SECRET
+}
