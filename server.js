@@ -3,6 +3,7 @@ const FileController = require("./src/file.controller")
 const UserController = require("./src/user.controller")
 const Middlewares = require("./src/middlewares")
 const fileUpload = require("express-fileupload")
+const cors = require("cors")
 const { PORT } = require("./config")
 const app = express()
 
@@ -10,6 +11,7 @@ app.use(fileUpload({
 	createParentPath: true
 }))
 
+app.use(cors())
 app.use(express.json())
 
 app.post('/signin', Middlewares.checkForIdAndPassword, UserController.signin)
