@@ -8,7 +8,7 @@ const {
   DATABASE_NAME,
   DATABASE_DIALECT,
   PORT,
-  TOKEN_SECRET
+  ACCESS_SECRET, REFRESH_SECRET
 } = process.env
 
 module.exports = {
@@ -18,5 +18,5 @@ module.exports = {
   DATABASE_NAME,
   PORT,
   DATABASE_DIALECT,
-  TOKEN_SECRET
+  ACCESS_SECRET, REFRESH_SECRET
 }

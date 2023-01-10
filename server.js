@@ -12,18 +12,18 @@ app.use(fileUpload({
 
 app.use(express.json())
 
-app.post('/signin', UserController.signin)
+app.post('/signin', Middlewares.checkForIdAndPassword, UserController.signin)
 app.post('/signin/new_token', UserController.newToken)
-app.post('/signup', UserController.signup)
-app.get('/info', UserController.info)
-app.get('/logout', UserController.logout)
+app.post('/signup', Middlewares.checkForIdAndPassword, UserController.signup)
+app.get('/info', Middlewares.auth, UserController.info)
+app.get('/logout', Middlewares.auth, UserController.logout)
 
-app.post('/file/upload', FileController.uploadFile)
-app.get('/file/list', FileController.listFiles)
-app.delete('/file/delete/:id', FileController.deleteFile)
-app.get('/file/:id', FileController.getFileInfo)
-app.get('/file/download/:id', FileController.downloadFile)
-app.put('/file/update/:id', FileController.updateFileInfo)
+app.post('/file/upload', Middlewares.auth, FileController.uploadFile)
+app.get('/file/list', Middlewares.auth, FileController.listFiles)
+app.delete('/file/delete/:id', Middlewares.auth, FileController.deleteFile)
+app.get('/file/:id', Middlewares.auth, FileController.getFileInfo)
+app.get('/file/download/:id', Middlewares.auth, FileController.downloadFile)
+app.put('/file/update/:id', Middlewares.auth, FileController.updateFileInfo)
 
 app.use(Middlewares.errorHandler)
 
