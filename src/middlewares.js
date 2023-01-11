@@ -7,14 +7,22 @@ module.exports = {
 		if (!(id && password))
 			return res
 				.status(400)
-				.json({ success: false, message: "Id and password required" })
+				.json({
+					error: true,
+					message: "Id and password required"
+				})
 		return next()
 	},
 
-	async auth(req, res, next) {
+	auth(req, res, next) {
 		let token = req.get("authorization")
 		if (!token) {
-			return res.status(403).json({ error: "A token is required for authentication" });
+			return res
+				.status(403)
+				.json({
+					error: true,
+					message: "A token is required for authentication"
+				});
 		}
 		token = token.split(" ")[1]
 		try {
@@ -22,7 +30,12 @@ module.exports = {
 			req.user = decoded;
 		} catch (err) {
 			console.log(err)
-			return res.status(401).json({ error: "Invalid Token" });
+			return res
+				.status(401)
+				.json({
+					error: true,
+					message: "Invalid Token"
+				});
 		}
 		return next();
 	},
